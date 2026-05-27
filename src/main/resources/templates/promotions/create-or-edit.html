@@ -12,10 +12,11 @@
         Creating a new promotion for the pizza: [[${promotion.getPizza()}]]
       </h2>
 
+      <!-- th:action="@{/promotions/create}" -->
       <form
         id="pizza-form"
         th:object="${promotion}"
-        th:action="@{/promotions/create}"
+        th:action="${edit} ? @{/promotions/edit/{id}(id = ${promotion.id})} : @{/promotions/create}"
         method="post"
       >
         <!-- qui nascondo la pizza -->

@@ -57,22 +57,34 @@
       >
 
       <!-- lista promozioni associate -->
-      <table class="table mt-4">
+      <table
+        class="table mt-4"
+        th:if="${pizza != null and !pizza.getPromotions().isEmpty()}"
+      >
         <thead>
           <tr>
             <th>Id</th>
             <th>Title</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Edit</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr th:each="promotion : ${pizza.promotions}">
+          <tr th:each="promotion : ${pizza.getPromotions()}">
             <td>[[${promotion.id}]]</td>
             <td>[[${promotion.title}]]</td>
             <td>[[${promotion.startDate}]]</td>
             <td>[[${promotion.endDate}]]</td>
+            <td>
+              <a
+                th:href="@{/promotions/edit/{id}(id = ${promotion.id})}"
+                class="btn btn-success"
+              >
+                Edit</a
+              >
+            </td>
           </tr>
         </tbody>
       </table>

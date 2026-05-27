@@ -108,7 +108,7 @@ public class PizzaController {
         promotion.setPizza(repository.findById(id).get());
         model.addAttribute("promotion", promotion);
 
-        return "promotions/create";
+        return "promotions/create-or-edit";
     }
 
 }
