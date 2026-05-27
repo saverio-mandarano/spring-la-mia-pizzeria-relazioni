@@ -5,6 +5,7 @@ import java.util.List;
 import org.lessons.java.crud.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lessons.java.crud.spring_la_mia_pizzeria_crud.model.Promotion;
 import org.lessons.java.crud.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
+import org.lessons.java.crud.spring_la_mia_pizzeria_crud.repository.PromotionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/pizze")
@@ -25,6 +25,9 @@ public class PizzaController {
 
     @Autowired
     private PizzaRepository repository;
+
+    @Autowired
+    private PromotionRepository promotionRepository;
 
     // Read
     @GetMapping
@@ -96,7 +99,19 @@ public class PizzaController {
     // Delete
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        repository.deleteById(id);
+        // prendere per ogni pizza le promozioni ad essa associate -> getPromotions()
+        // eliminarle dalla tabella promotions: promotionRepository.delete(promotion)
+        // a questo punto posso cancellare perchè non ho vincoli della foreign key su
+        // pizza_id
+
+        Pizza pizza = repository.findById(id).get();
+        for (Promotion promotionToDelete : pizza.getPromotions()) {
+            promotionRepository.delete(promotionToDelete);
+
+        }
+
+        // repository.deleteById(id);
+        repository.delete(pizza);
 
         return "redirect:/pizze";
     }
