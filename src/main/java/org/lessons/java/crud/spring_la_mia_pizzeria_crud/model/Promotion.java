@@ -25,12 +25,12 @@ public class Promotion {
     @NotBlank(message = "The title must not be null, nor empty or blank")
     private String title;
 
-    @NotNull(message = "Date must not be null")
+    @NotNull(message = "startDate must not be null")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate starDate;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @NotNull(message = "Date must not be null")
+    @NotNull(message = "endDate must not be null")
     private LocalDate endDate;
 
     @ManyToOne

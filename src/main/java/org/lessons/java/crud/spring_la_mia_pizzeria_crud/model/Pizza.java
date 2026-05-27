@@ -1,12 +1,14 @@
 package org.lessons.java.crud.spring_la_mia_pizzeria_crud.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -33,6 +35,9 @@ public class Pizza {
 
     @NotBlank
     private String url;
+
+    @OneToMany(mappedBy = "pizza")
+    private List<Promotion> promotions;
 
     public Integer getId() {
         return id;
@@ -77,5 +82,13 @@ public class Pizza {
     @Override
     public String toString() {
         return String.format("%s: %s", name, description);
+    }
+
+    public List<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(List<Promotion> promotions) {
+        this.promotions = promotions;
     }
 }
