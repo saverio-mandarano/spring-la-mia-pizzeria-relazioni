@@ -29,7 +29,7 @@ public class PromotionController {
         }
 
         repository.save(formPromotion);
-        return "redirect:/pizze";
+        return "redirect:/pizze/" + formPromotion.getPizza().getId();
     }
 
 }
