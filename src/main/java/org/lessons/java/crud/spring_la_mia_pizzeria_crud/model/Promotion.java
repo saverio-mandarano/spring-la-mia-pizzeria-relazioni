@@ -27,7 +27,15 @@ public class Promotion {
 
     @NotNull(message = "startDate must not be null")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate starDate;
+    private LocalDate startDate;
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @NotNull(message = "endDate must not be null")
@@ -51,14 +59,6 @@ public class Promotion {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public LocalDate getStarDate() {
-        return starDate;
-    }
-
-    public void setStarDate(LocalDate starDate) {
-        this.starDate = starDate;
     }
 
     public LocalDate getEndDate() {

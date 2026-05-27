@@ -49,6 +49,12 @@
       </div>
 
       <p th:unless="${pizza != null}">Pizza non trovata.</p>
+      <!-- crea nuova promozione btn -->
+      <a
+        th:href="@{/pizze/{id}/promotion (id = ${pizza.id})}"
+        class="btn btn-outline-primary mt-4"
+        >Create New Promotion</a
+      >
     </div>
 
     <div th:replace="fragments/fragments :: scripts"></div>
