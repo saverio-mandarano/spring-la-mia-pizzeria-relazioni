@@ -40,6 +40,21 @@
                 <span th:text="${pizza.id}"></span>
               </p>
 
+              <p class="card-text">
+                <strong>Ingredienti associati:</strong>
+              </p>
+
+              <ul th:if="${!pizza.ingredients.isEmpty()}">
+                <li
+                  th:each="ingredient : ${pizza.ingredients}"
+                  th:text="${ingredient.name}"
+                ></li>
+              </ul>
+
+              <p th:if="${pizza.ingredients.isEmpty()}">
+                Nessun ingrediente associato.
+              </p>
+
               <a th:href="@{/pizze}" class="btn btn-primary mt-3">
                 Torna all’elenco
               </a>
