@@ -9,7 +9,7 @@
 
     <div class="container mt-4">
       <h2 class="mb-4 text-center">Updating the pizza: [[${pizza.name}]]</h2>
-
+      <div class="mb-4"></div>
       <!-- form -->
       <form
         id="pizza-form"
@@ -23,6 +23,22 @@
             <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
           </ul>
         </div> -->
+        <div
+          class="single-ingredient form-check"
+          th:each="ingredient : ${ingredients}"
+        >
+          <input
+            type="checkbox"
+            th:id="|ingredient-${ingredient.id}|"
+            th:field="${pizza.ingredients}"
+            th:value="${ingredient.id}"
+          />
+          <label
+            th:for="|ingredient-${ingredient.id}|"
+            class="form-check-label"
+            th:text="${ingredient.name}"
+          ></label>
+        </div>
         <!-- name -->
         <div class="mb-3">
           <label for="name" class="form-label">Name:</label>

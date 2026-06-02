@@ -30,6 +30,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Number of pizze con questo ingrediente</th>
             <th></th>
             <th></th>
             <th></th>
@@ -41,6 +42,8 @@
             <td th:text="${ingredient.id}"></td>
             <td th:text="${ingredient.name}"></td>
             <td th:text="${ingredient.description}"></td>
+            <!-- qui il numero di copie -->
+            <td th:text="${ingredient.pizze.size()}"></td>
 
             <td>
               <a
